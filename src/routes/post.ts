@@ -1,12 +1,12 @@
-import * as express from "express";
+import express from "express";
 const router= express.Router();
 import {getPosts, createPost, protectedapi, login, ensureToken} from "../controller/post";
-import * as validator from "../validator/index";
+import {createPostValidator} from "../validator/index";
 
 router.get('/', getPosts);
 router.get('/protected', ensureToken, protectedapi);
 router.post('/login', login);
-router.post('/post', validator.createPostValidator, createPost);
+router.post('/post', createPostValidator, createPost);
 export= router;
 
 
